@@ -230,7 +230,7 @@ module.exports = function (webpackEnv) {
       // module chunks which are built will work in web workers as well.
       globalObject: 'this',
     },
-    optimization: {
+    optimization: { // 链接:https://blog.csdn.net/weixin_43678786/article/details/85788759
       minimize: isEnvProduction,
       minimizer: [
         // This is only used in production mode

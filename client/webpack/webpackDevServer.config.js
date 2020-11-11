@@ -108,6 +108,9 @@ module.exports = function (proxy, allowedHost) {
       index: paths.publicUrlOrPath,
     },
     public: allowedHost,
+    headers: {
+      'Access-Control-Allow-Origin': '*', // cors跨域
+    },
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
     proxy,
     before(app, server) {
