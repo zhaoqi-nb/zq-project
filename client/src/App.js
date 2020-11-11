@@ -7,8 +7,6 @@ import {
 import './App.css';
 
 function App() {
-  const a = {'1':2}
-  console.log(a)
   return (
     <div className="App">
       {/* <header className="App-header"> */}
