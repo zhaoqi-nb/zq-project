@@ -61,6 +61,10 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+// todo: 待eslint配置稳定后删掉
+const eslintCacheIdentifier = JSON.stringify(
+  fs.statSync(paths.eslintRc).mtimeMs + fs.statSync(paths.eslintIgnore).mtimeMs,
+);
 const hasJsxRuntime = (() => {
   if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
     return false;
@@ -367,7 +371,7 @@ module.exports = function (webpackEnv) {
             loader: require.resolve('eslint-loader'),
             options: {
               cache: true,
-              // cacheIdentifer: eslintCacheIdentifier,
+              cacheIdentifer: eslintCacheIdentifier,
               formatter: require.resolve('react-dev-utils/eslintFormatter'),
               eslintPath: require.resolve('eslint'),
               resolvePluginsRelativeTo: __dirname,
