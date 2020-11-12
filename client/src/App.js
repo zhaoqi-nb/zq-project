@@ -3,10 +3,10 @@ import React from 'react';
 import {
   QuestionCircleOutlined
 } from '@ant-design/icons';
-// import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const a = { a: 1 }
   return (
     <div className="App">
       {/* <header className="App-header"> */}
@@ -15,16 +15,7 @@ function App() {
       <p>
         {/* Edit <code>src/App.js</code> and save to reload. */}
       </p>
-      {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-
-        </a> */}
-        恒恒叫哥哥<QuestionCircleOutlined />
+        恒恒叫哥哥   <QuestionCircleOutlined />
       <div style={{ backgroundColor: "red" }} >11322</div>
       <table width='500' height='100' style={{
         backgroundColor: 'blue'

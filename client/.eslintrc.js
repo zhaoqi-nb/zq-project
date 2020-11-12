@@ -7,7 +7,7 @@ module.exports = {
     jest: true,
     jasmine: true,
   },
-  extends: ['airbnb','prettier','prettier/react',],
+  extends: ['airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
   globals: {
     window: true,
@@ -22,7 +22,7 @@ module.exports = {
     jest: true,
     beforeEach: true,
   },
-  plugins: [ 'eslint-comments', 'unicorn', 'react-hooks'],
+  plugins: ['eslint-comments', 'unicorn', 'react-hooks'],
   rules: {
     'react/jsx-wrap-multilines': 0,
     'react/prop-types': 0,
