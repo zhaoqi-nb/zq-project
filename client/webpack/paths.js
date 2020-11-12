@@ -28,7 +28,6 @@ const publicUrlOrPath = getPublicUrlOrPath(
   require(resolveApp('package.json')).homepage,
   process.env.PUBLIC_URL
 );
-console.log(publicUrlOrPath)
 // const publicUrlOrPath = process.env.PUBLIC_URL;
 
 const moduleFileExtensions = [
