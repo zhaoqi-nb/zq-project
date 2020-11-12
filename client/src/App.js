@@ -7,6 +7,7 @@ import './App.css';
 
 function App() {
   const a = { a: 1 }
+  1
   const handle = () => {
     const a = { a: 1 }
     return a
