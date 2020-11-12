@@ -18,13 +18,8 @@
     "start": "node webpack/scripts/start.js",
     "build": "node webpack/scripts/build.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "lint-staged": "lint-staged"
   },
   "husky": {
     "hooks": {

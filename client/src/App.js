@@ -7,6 +7,11 @@ import './App.css';
 
 function App() {
   const a = { a: 1 }
+  const handle = () => {
+    const a = { a: 1 }
+    return a
+  }
+  const b = 1
   return (
     <div className="App">
       {/* <header className="App-header"> */}
