@@ -24,6 +24,7 @@ module.exports = {
   },
   plugins: ['eslint-comments', 'unicorn', 'react-hooks'],
   rules: {
+    'react/state-in-constructor': 0,
     'react/jsx-wrap-multilines': 0,
     'react/prop-types': 0,
     'react/forbid-prop-types': 0,
@@ -93,8 +94,9 @@ module.exports = {
     'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }],
   },
   settings: {
-    // support import modules from TypeScript files in JavaScript files
-    'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } },
+    'import/resolver': {
+      node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    },
     polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
   },
 };

@@ -5,18 +5,18 @@ module.exports = {
   trailingComma: 'all',
   printWidth: 100,
   proseWrap: 'never',
-  overrides: [
-    {
-      files: '.prettierrc',
-      options: {
-        parser: 'json',
-      },
-    },
-    {
-      files: '.editorconfig',
-      options: {
-        parser: 'yaml',
-      },
-    },
-  ],
+  // overrides: [
+  //   {
+  //     files: '.prettierrc',
+  //     options: {
+  //       parser: 'json',
+  //     },
+  //   },
+  //   {
+  //     files: '.editorconfig',
+  //     options: {
+  //       parser: 'yaml',
+  //     },
+  //   },
+  // ],
 };
