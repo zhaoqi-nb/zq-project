@@ -1,5 +1,5 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
+// import { hot } from 'react-hot-loader/root';
 import ReactDOM from 'react-dom';
 import { ConfigProvider } from 'antd';
 import { createBrowserHistory } from 'history';
@@ -9,7 +9,7 @@ import 'dayjs/locale/zh-cn';
 import App from './App';
 import './index.css';
 
-hot(App);
+// hot(App);
 dayjs.locale('zh-cn');
 const history = createBrowserHistory();
 ReactDOM.render(
@@ -21,8 +21,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();

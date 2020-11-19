@@ -13,11 +13,10 @@ class AppRouter extends Component {
   };
 
   componentDidMount() {
-    console.log(routes, 22);
+    console.log(routes, 22335);
   }
 
   render() {
-    console.log(22222, 222, 3332);
     const { routerData, authority } = this.state;
     const { history } = this.props;
     return (
@@ -28,7 +27,7 @@ class AppRouter extends Component {
           });
         }}
       >
-        2{this.state.a}
+        2222{this.state.a}ggg-----
         <My />
       </div>
     );
