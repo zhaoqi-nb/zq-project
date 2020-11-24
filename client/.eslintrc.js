@@ -29,6 +29,7 @@ module.exports = {
     'react/prop-types': 0,
     'react/forbid-prop-types': 0,
     'react/sort-comp': 1,
+    'react/jsx-props-no-spreading': 0,
     'react/jsx-one-expression-per-line': 0,
     'generator-star-spacing': 0,
     'function-paren-newline': 0,
@@ -83,7 +84,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     // Conflict with prettier
     'arrow-body-style': ['error', 'as-needed'],
-    'arrow-parens': 1,
+    'arrow-parens': 0,
     'object-curly-newline': 0,
     'implicit-arrow-linebreak': 0,
     'operator-linebreak': 0,

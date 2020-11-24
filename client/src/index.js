@@ -7,7 +7,7 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import App from './App';
-import './index.css';
+// import './index.css';
 
 // hot(App);
 dayjs.locale('zh-cn');
@@ -21,3 +21,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+// if (module.hot) {
+//   console.log(module.hot)
+//   module.hot.accept();
+// }

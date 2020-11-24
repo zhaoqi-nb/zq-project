@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
 class MyPage extends Component {
-  componentDidMount() {
-    console.log(2222, 444, 55);
-  }
+  componentDidMount() {}
 
   render() {
-    return <div>my pagevvvvv</div>;
+    return <div>my pagevvvvv223112</div>;
   }
 }
 
