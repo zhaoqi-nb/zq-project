@@ -92,7 +92,7 @@ module.exports = function (webpackEnv) {
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
-  const shouldUseReactRefresh = env.raw.FAST_REFRESH; // 使用反应刷新
+  // const shouldUseReactRefresh = env.raw.FAST_REFRESH; // 使用反应刷新
 
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
@@ -184,7 +184,7 @@ module.exports = function (webpackEnv) {
           webpackDevClientEntry,
           // Finally, this is your app's code:
           paths.appIndexJs,
-          'react-hot-loader/patch',
+          // 'react-hot-loader/patch',
           // We include the app code last so that if there is a runtime error during
           // initialization, it doesn't blow up the WebpackDevServer client, and
           // changing JS code would still trigger a refresh.
@@ -441,9 +441,17 @@ module.exports = function (webpackEnv) {
                       },
                     },
                   ],
-                  isEnvDevelopment &&
-                    shouldUseReactRefresh &&
-                    require.resolve('react-refresh/babel'),
+                  // 热刷新
+                  isEnvDevelopment && require.resolve('react-refresh/babel'),
+                  // 按需加在antd的css
+                  [
+                    'import',
+                    {
+                      libraryName: 'antd',
+                      libraryDirectory: 'es',
+                      style: 'css', // `style: true` 会加载 less 文件
+                    },
+                  ],
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -629,7 +637,6 @@ module.exports = function (webpackEnv) {
       // Experimental hot reloading for React .
       // https://github.com/facebook/react/tree/master/packages/react-refresh
       isEnvDevelopment &&
-        shouldUseReactRefresh &&
         new ReactRefreshWebpackPlugin({
           overlay: {
             entry: webpackDevClientEntry,

@@ -1,26 +1,45 @@
 import React from 'react';
-// import { hot } from 'react-hot-loader/root';
+import dva from 'dva';
+import createLoading from 'dva-loading';
 import ReactDOM from 'react-dom';
 import { ConfigProvider } from 'antd';
 import { createBrowserHistory } from 'history';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import App from './App';
-// import './index.css';
+import AppRouter from './App';
+import './common.less';
 
-// hot(App);
 dayjs.locale('zh-cn');
-const history = createBrowserHistory();
+
+const app = dva({
+  history: createBrowserHistory(),
+  onAction: [],
+});
+
+app.use(createLoading());
+
+app.router((props) => <AppRouter {...props} />);
+
+const App = app.start();
+
 ReactDOM.render(
-  // 严格模式
-  <React.StrictMode>
-    <ConfigProvider locale={zhCN}>
-      <App history={history} />
-    </ConfigProvider>
-  </React.StrictMode>,
+  <ConfigProvider locale={zhCN}>
+    <App />
+  </ConfigProvider>,
   document.getElementById('root'),
 );
+if (module.hot) {
+  module.hot.accept(['./App'], () => {
+    // 新的 AppComponent 加载成功后重新执行下组建渲染逻辑
+    ReactDOM.render(
+      <ConfigProvider locale={zhCN}>
+        <App />
+      </ConfigProvider>,
+      document.getElementById('root'),
+    );
+  });
+}
 // if (module.hot) {
 //   console.log(module.hot)
 //   module.hot.accept();

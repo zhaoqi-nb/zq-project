@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Router, Switch } from 'react-router-dom';
+import { router } from 'dva';
 import routes from '@/configs/router.config';
-// import My from '@/pages/My';
-import { getLayouts, formatter } from '@/utils';
+import { hot } from 'react-hot-loader/root';
+import { getLayouts, formatter } from '@/utils/router';
 
+const { Router, Switch } = router;
 class AppRouter extends Component {
   state = {
     routerData: [],
@@ -12,6 +13,10 @@ class AppRouter extends Component {
 
   componentDidMount() {
     this.initData();
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(prevProps, this.props);
   }
 
   initData = () => {
@@ -24,7 +29,6 @@ class AppRouter extends Component {
   render() {
     const { routerData, authority } = this.state;
     const { history } = this.props;
-    console.log(getLayouts(routerData, authority));
     return (
       <Router history={history}>
         <Switch>{getLayouts(routerData, authority)}</Switch>
@@ -33,4 +37,5 @@ class AppRouter extends Component {
   }
 }
 
-export default AppRouter;
+export default hot(AppRouter);
+// export default AppRouter;

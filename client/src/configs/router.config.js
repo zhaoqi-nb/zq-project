@@ -1,4 +1,6 @@
 import MyPage from '@/pages/My';
+import One from '@/pages/One/one';
+import Two from '@/pages/One/two';
 import Layouts from '@/layouts';
 
 export default [
@@ -6,6 +8,10 @@ export default [
     path: '/',
     component: Layouts,
     routes: [
+      {
+        path: '/',
+        redirect: '/my',
+      },
       {
         path: '/my',
         name: '我的1',
@@ -16,10 +22,14 @@ export default [
         name: '我的2',
         routes: [
           {
+            path: '/profile',
+            redirect: '/profile/config',
+          },
+          {
             path: '/profile/config',
             name: '配置中心',
             icon: 'icon-setting',
-            component: MyPage,
+            component: One,
           },
           {
             path: '/profile/config/:id/:type?',
@@ -31,7 +41,7 @@ export default [
             path: '/profile/feedback',
             name: '用户反馈',
             icon: 'icon-fankui',
-            component: MyPage,
+            component: Two,
           },
           {
             path: '/profile/feedback/:type/:id?',

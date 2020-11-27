@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
+import { Input } from 'antd';
 
 class MyPage extends Component {
-  componentDidMount() {}
+  state = {
+    value: '',
+  };
+
+  componentDidMount() {
+    // console.log('我的页面', this.props)
+  }
+
+  handleInputChange = (e) => {
+    this.setState({
+      value: e.target.value,
+    });
+  };
 
   render() {
-    return <div>my pagevvvvv223112</div>;
+    const { value } = this.state;
+    return (
+      <div>
+        my page1245
+        <Input onChange={this.handleInputChange} />
+        {value}
+      </div>
+    );
   }
 }
 
