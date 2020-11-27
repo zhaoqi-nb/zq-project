@@ -20,7 +20,6 @@ class MyPage extends Component {
     const { value } = this.state;
     return (
       <div>
-        my page1245
         <Input onChange={this.handleInputChange} />
         {value}
       </div>

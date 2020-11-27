@@ -1,13 +1,13 @@
-/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Layout, Menu } from 'antd';
 import { router } from 'dva';
 // import { Link } from 'react-router-dom';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+// import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 // import isPlainObject from 'lodash/isPlainObject';
+import logo from '@/assest/log.jpg';
 
 const { Header } = Layout;
-const { SubMenu } = Menu;
+// const { SubMenu } = Menu;
 const { Link } = router;
 
 class HeaderView extends Component {
@@ -43,17 +43,21 @@ class HeaderView extends Component {
     const { routes } = this.props;
     const { current } = this.state;
 
-    const visibleRoutes = routes;
+    const visibleRoutes = routes.filter(v => v.name);
     return (
-      <Header id="left-nav-menu" className="ones-header">
+      <Header className="ones-header">
+        <div className="header-system">
+          <img className="system-logo" src={logo} alt="log" />
+          {/* <span className="system-name">myProject</span> */}
+        </div>
         <Menu
           onClick={this.handleClick}
           selectedKeys={[current]}
           // mode="horizontal"
           mode="horizontal"
-          // style={{ float: 'left', height: '100%' }}
+          style={{ float: 'left', height: '100%' }}
         >
-          {visibleRoutes.map(({ name, path, nav: Nav }) => (
+          {visibleRoutes.map(({ name, path, }) => (
             <Menu.Item key={path}>
               <Link to={path}>{name}</Link>
             </Menu.Item>

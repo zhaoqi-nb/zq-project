@@ -19,7 +19,10 @@ const app = dva({
 
 app.use(createLoading());
 
-app.router((props) => <AppRouter {...props} />);
+app.router((props) => {
+  console.log(props)
+  return <AppRouter {...props} />
+});
 
 const App = app.start();
 
@@ -29,17 +32,17 @@ ReactDOM.render(
   </ConfigProvider>,
   document.getElementById('root'),
 );
-if (module.hot) {
-  module.hot.accept(['./App'], () => {
-    // 新的 AppComponent 加载成功后重新执行下组建渲染逻辑
-    ReactDOM.render(
-      <ConfigProvider locale={zhCN}>
-        <App />
-      </ConfigProvider>,
-      document.getElementById('root'),
-    );
-  });
-}
+// if (module.hot) {
+//   module.hot.accept(['./App'], () => {
+//     // 新的 AppComponent 加载成功后重新执行下组建渲染逻辑
+//     ReactDOM.render(
+//       <ConfigProvider locale={zhCN}>
+//         <App />
+//       </ConfigProvider>,
+//       document.getElementById('root'),
+//     );
+//   });
+// }
 // if (module.hot) {
 //   console.log(module.hot)
 //   module.hot.accept();

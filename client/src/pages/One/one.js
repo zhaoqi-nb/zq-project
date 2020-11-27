@@ -6,7 +6,7 @@ class MyPage extends Component {
   }
 
   render() {
-    return <div>one page1245</div>;
+    return <div>one page124</div>;
   }
 }
 

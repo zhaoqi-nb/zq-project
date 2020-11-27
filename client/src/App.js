@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { router } from 'dva';
 import routes from '@/configs/router.config';
-import { hot } from 'react-hot-loader/root';
+// import { hot } from 'react-hot-loader/root';
 import { getLayouts, formatter } from '@/utils/router';
 
 const { Router, Switch } = router;
@@ -13,10 +13,6 @@ class AppRouter extends Component {
 
   componentDidMount() {
     this.initData();
-  }
-
-  componentDidUpdate(prevProps) {
-    console.log(prevProps, this.props);
   }
 
   initData = () => {
@@ -37,5 +33,5 @@ class AppRouter extends Component {
   }
 }
 
-export default hot(AppRouter);
-// export default AppRouter;
+// export default hot(AppRouter);
+export default AppRouter;
