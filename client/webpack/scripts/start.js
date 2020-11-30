@@ -119,7 +119,7 @@ checkBrowsers(paths.appPath, isInteractive)
         return console.log(err);
       }
       if (isInteractive) {
-        clearConsole();
+        // clearConsole();
       }
 
       console.log(chalk.cyan('Starting the development server...\n'));

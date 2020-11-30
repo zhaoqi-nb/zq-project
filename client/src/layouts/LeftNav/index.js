@@ -22,17 +22,12 @@ export default class LeftNav extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps, this.props);
     if (
       prevProps.pathname !== this.props.pathname ||
       prevProps.currentAuthority !== this.props.currentAuthority
     ) {
       this.updateNavs();
     }
-  }
-
-  componentWillUnmount() {
-    console.log('willunmount');
   }
 
   updateNavs = () => {
@@ -102,7 +97,7 @@ export default class LeftNav extends Component {
     }
     return navItems
       .filter((v) => v.name)
-      .map(({ name, path, nav: Nav, routes, hideChildrenInMenu, hideInMenu }) => {
+      .map(({ name, path, routes, hideChildrenInMenu, hideInMenu }) => {
         const subNavItems = routes;
         if (!hideChildrenInMenu && subNavItems && subNavItems.length > 0) {
           return (
@@ -110,7 +105,6 @@ export default class LeftNav extends Component {
               key={path}
               title={
                 <>
-                  {/* {icon && <OnesIcon type={icon} />} */}
                   <span>{name}</span>
                 </>
               }
@@ -123,12 +117,7 @@ export default class LeftNav extends Component {
         return (
           !hideInMenu && (
             <Menu.Item key={path}>
-              {/* {icon && <OnesIcon type={icon} />} */}
-              {Nav ? (
-                <Nav />
-              ) : (
-                <Link to={path && path.replace(/(\/:[^/:?]+\?)+$/, '')}>{name}</Link>
-              )}
+              <Link to={path && path.replace(/(\/:[^/:?]+\?)+$/, '')}>{name}</Link>
             </Menu.Item>
           )
         );
@@ -138,7 +127,7 @@ export default class LeftNav extends Component {
   render() {
     const { currentAuthority } = this.props;
     const { current, navItems } = this.state;
-    return (
+    return navItems && navItems.length > 0 ? (
       <Sider
         collapsible
         collapsed={false} // {!current || current.length <= 0} // 只有左侧栏菜单一级中的某一项为高亮状态，左侧栏才会显示
@@ -157,6 +146,8 @@ export default class LeftNav extends Component {
           {this.renderMenuItems(navItems, currentAuthority)}
         </Menu>
       </Sider>
+    ) : (
+      <div />
     );
   }
 }

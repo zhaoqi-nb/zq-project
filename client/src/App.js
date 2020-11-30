@@ -8,7 +8,7 @@ const { Router, Switch } = router;
 class AppRouter extends Component {
   state = {
     routerData: [],
-    authority: [],
+    authority: [1],
   };
 
   componentDidMount() {

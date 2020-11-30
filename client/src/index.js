@@ -19,12 +19,12 @@ const app = dva({
 
 app.use(createLoading());
 
-app.router((props) => {
-  console.log(props)
-  return <AppRouter {...props} />
-});
+app.router((props) => <AppRouter {...props} />);
 
 const App = app.start();
+
+// eslint-disable-next-line no-underscore-dangle
+export default app._store;
 
 ReactDOM.render(
   <ConfigProvider locale={zhCN}>
@@ -32,18 +32,3 @@ ReactDOM.render(
   </ConfigProvider>,
   document.getElementById('root'),
 );
-// if (module.hot) {
-//   module.hot.accept(['./App'], () => {
-//     // 新的 AppComponent 加载成功后重新执行下组建渲染逻辑
-//     ReactDOM.render(
-//       <ConfigProvider locale={zhCN}>
-//         <App />
-//       </ConfigProvider>,
-//       document.getElementById('root'),
-//     );
-//   });
-// }
-// if (module.hot) {
-//   console.log(module.hot)
-//   module.hot.accept();
-// }

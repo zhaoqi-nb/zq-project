@@ -19,6 +19,12 @@ class HeaderView extends Component {
     this.updateCurrentNav();
   }
 
+  componentDidUpdate(preProps) {
+    if (preProps.pathname !== this.props.pathname) {
+      this.updateCurrentNav();
+    }
+  }
+
   updateCurrentNav = () => {
     const { pathname, routes } = this.props;
     const hasCurrentNav = routes
@@ -42,22 +48,19 @@ class HeaderView extends Component {
   render() {
     const { routes } = this.props;
     const { current } = this.state;
-
-    const visibleRoutes = routes.filter(v => v.name);
+    const visibleRoutes = routes.filter((v) => v.name);
     return (
       <Header className="ones-header">
         <div className="header-system">
           <img className="system-logo" src={logo} alt="log" />
-          {/* <span className="system-name">myProject</span> */}
         </div>
         <Menu
           onClick={this.handleClick}
           selectedKeys={[current]}
-          // mode="horizontal"
           mode="horizontal"
           style={{ float: 'left', height: '100%' }}
         >
-          {visibleRoutes.map(({ name, path, }) => (
+          {visibleRoutes.map(({ name, path }) => (
             <Menu.Item key={path}>
               <Link to={path}>{name}</Link>
             </Menu.Item>

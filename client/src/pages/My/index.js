@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Input } from 'antd';
+import { Input, Card, Button } from 'antd';
+import { fetchData } from '@/servers/my';
 
 class MyPage extends Component {
   state = {
@@ -16,13 +17,24 @@ class MyPage extends Component {
     });
   };
 
+  handleFetchData = () => {
+    fetchData(this.state.value)
+      .then((res) => {
+        console.log(res, 22);
+      })
+      .catch((error) => {
+        console.log(error, 11);
+      });
+  };
+
   render() {
     const { value } = this.state;
     return (
-      <div>
+      <Card>
         <Input onChange={this.handleInputChange} />
+        <Button onClick={this.handleFetchData}>请求</Button>
         {value}
-      </div>
+      </Card>
     );
   }
 }
