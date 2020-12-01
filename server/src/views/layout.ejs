@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="http://s1.ljcdn.com/ke-ones/favicon.ico" />
+    <title><% if (typeof title !== undefined) { %> <%= title %> <% } %></title>
+    <% for (var cssEntrypoint of css) { %>
+    <link href="<%= publicUrl %>/<%= cssEntrypoint %>" rel="stylesheet" />
+    <% } %>
+  </head>
+  <body>
+    <%- body %>
+  </body>
+</html>
