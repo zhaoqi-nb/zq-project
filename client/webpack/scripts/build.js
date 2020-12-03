@@ -102,6 +102,7 @@ checkBrowsers(paths.appPath, isInteractive)
       const appPackage = require(paths.appPackageJson);
       const publicUrl = paths.publicUrlOrPath;
       const publicPath = config.output.publicPath;
+      console.log(publicUrl, publicPath);
       const buildFolder = path.relative(process.cwd(), paths.appBuild);
       printHostingInstructions(
         appPackage,
@@ -191,12 +192,12 @@ function build(previousFileSizes) {
         warnings: messages.warnings,
       };
 
-      if (writeStatsJson) {
-        return bfj
-          .write(paths.appBuild + '/bundle-stats.json', stats.toJson())
-          .then(() => resolve(resolveArgs))
-          .catch((error) => reject(new Error(error)));
-      }
+      // if (writeStatsJson) {
+      //   return bfj
+      //     .write(paths.appBuild + '/bundle-stats.json', stats.toJson())
+      //     .then(() => resolve(resolveArgs))
+      //     .catch((error) => reject(new Error(error)));
+      // }
 
       return resolve(resolveArgs);
     });

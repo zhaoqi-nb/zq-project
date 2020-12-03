@@ -18,19 +18,19 @@ const serverApiUrl = {
 const DEV_SERVER_ENV = process.env.DEV_SERVER_ENV;
 const isDevServerEnvTesting = DEV_SERVER_ENV && DEV_SERVER_ENV.indexOf('test') === 0;
 
-// app.set('view engine', 'ejs');
-// app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 // app.engine('html', require('ejs').renderFile);
 // app.set('view engine', 'html');
 
 
-// app.get('/', function (req, res) {
-//   res.render('index.ejs', {
-//     ENV: 1111, userInfo: {
-//       name: '赵琪'
-//     }
-//   });
-// });
+app.get('/', function (req, res) {
+  res.render('index.ejs', {
+    ENV: 1111, userInfo: {
+      name: '赵琪'
+    }
+  });
+});
 
 app.use('/api', createProxyMiddleware({
   target: isDevServerEnvTesting ? serverApiUrl.testing[DEV_SERVER_ENV] : serverApiUrl.testing.test,

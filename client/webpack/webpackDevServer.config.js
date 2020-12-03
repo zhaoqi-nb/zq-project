@@ -102,8 +102,12 @@ module.exports = function (proxy, allowedHost) {
     headers: {
       'Access-Control-Allow-Origin': '*', // cors跨域
     },
+    // proxy,
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
-    proxy,
+    proxy: proxy || {
+      '/api': 'http://localhost:3081',
+      // changeOrigin: true,
+    },
     before(app, server) {
       // Keep `evalSourceMapMiddleware` and `errorOverlayMiddleware`
       // middlewares before `redirectServedPath` otherwise will not have any effect
