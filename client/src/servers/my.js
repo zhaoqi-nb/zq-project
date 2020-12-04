@@ -1,9 +1,9 @@
 import { doGet, doPost } from '@/utils/request';
 
 export async function fetchData(params) {
-  return doGet('/api/my/fetch_data', params);
+  return doGet('/api/onduty/get_on_duty_list', params);
 }
 
 export async function editBuildPluginCrontab(params) {
-  return doPost('/api/task/edit_build_plugin_crontab', params);
+  return doPost('/api/onduty/get_on_duty_list', params);
 }

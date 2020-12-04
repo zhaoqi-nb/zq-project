@@ -14,6 +14,7 @@ const serverApiUrl = {
     test4: 'http://test4-api.ones.ke.com/',
     // test5: '',
   },
+  mock: 'http://at.ke.com/mock/http-ke-ones/forfe/test1---rec-no'
 }
 const DEV_SERVER_ENV = process.env.DEV_SERVER_ENV;
 const isDevServerEnvTesting = DEV_SERVER_ENV && DEV_SERVER_ENV.indexOf('test') === 0;
@@ -33,7 +34,7 @@ app.get('/', function (req, res) {
 });
 
 app.use('/api', createProxyMiddleware({
-  target: isDevServerEnvTesting ? serverApiUrl.testing[DEV_SERVER_ENV] : serverApiUrl.testing.test,
+  target: isDevServerEnvTesting ? serverApiUrl.testing[DEV_SERVER_ENV] : serverApiUrl.mock,
   changeOrigin: true,
   pathRewrite: {
     "^/api": ""
