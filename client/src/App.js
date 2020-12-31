@@ -1,7 +1,8 @@
+// todo: react-hot-loader/root的使用要放在react前面
+// import { hot } from 'react-hot-loader/root';
 import React, { Component } from 'react';
 import { router } from 'dva';
 import routes from '@/configs/router.config';
-// import { hot } from 'react-hot-loader/root';
 import { getLayouts, formatter } from '@/utils/router';
 
 const { Router, Switch } = router;
@@ -33,5 +34,4 @@ class AppRouter extends Component {
   }
 }
 
-// export default hot(AppRouter);
 export default AppRouter;

@@ -7,9 +7,7 @@ class MyPage extends Component {
     value: '',
   };
 
-  componentDidMount() {
-    // console.log('我的页面', this.props)
-  }
+  componentDidMount() {}
 
   handleInputChange = (e) => {
     this.setState({
@@ -32,7 +30,10 @@ class MyPage extends Component {
     return (
       <Card>
         <Input onChange={this.handleInputChange} />
-        <Button onClick={this.handleFetchData}>请求</Button>
+        111
+        <Button style={{ color: 'red' }} onClick={this.handleFetchData}>
+          请求
+        </Button>
         {value}
       </Card>
     );

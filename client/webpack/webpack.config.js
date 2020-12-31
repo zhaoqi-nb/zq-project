@@ -2,6 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const resolve = require('resolve');
+// todo 打包前删除dist,build文件
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+// todo 优化打包进度
+const WebpackBar = require('webpackbar');
+// todo 显示打包进度
+// const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 // const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -170,6 +176,8 @@ module.exports = function (webpackEnv) {
           webpackDevClientEntry,
           // Finally, this is your app's code:
           paths.appIndexJs,
+          // // todo:确保热加载程序
+          // 'react-hot-loader/patch',
         ]
       : paths.appIndexJs,
     output: {
@@ -351,6 +359,19 @@ module.exports = function (webpackEnv) {
             },
           },
         },
+        // 热刷新
+        {
+          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: require.resolve('babel-loader'),
+              options: {
+                plugins: isEnvDevelopment ? [require.resolve('react-refresh/babel')] : [],
+              },
+            },
+          ],
+        },
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
@@ -423,8 +444,6 @@ module.exports = function (webpackEnv) {
                       },
                     },
                   ],
-                  // 热刷新
-                  isEnvDevelopment && require.resolve('react-refresh/babel'),
                   // 按需加在antd的css
                   [
                     'import',
@@ -567,6 +586,8 @@ module.exports = function (webpackEnv) {
       ],
     },
     plugins: [
+      new CleanWebpackPlugin(),
+      new WebpackBar(),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
@@ -618,18 +639,7 @@ module.exports = function (webpackEnv) {
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       // Experimental hot reloading for React .
       // https://github.com/facebook/react/tree/master/packages/react-refresh
-      isEnvDevelopment &&
-        new ReactRefreshWebpackPlugin({
-          overlay: {
-            entry: webpackDevClientEntry,
-            // The expected exports are slightly different from what the overlay exports,
-            // so an interop is included here to enable feedback on module-level errors.
-            module: reactRefreshOverlayEntry,
-            // Since we ship a custom dev client and overlay integration,
-            // the bundled socket handling logic can be eliminated.
-            sockIntegration: false,
-          },
-        }),
+      isEnvDevelopment && new ReactRefreshWebpackPlugin(),
       // Watcher doesn't work well if you mistype casing in a path so we use
       // a plugin that prints an error when you attempt to do this.
       // See https://github.com/facebook/create-react-app/issues/240
@@ -712,6 +722,7 @@ module.exports = function (webpackEnv) {
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
+      // todo:eslient校验
       // new ESLintPlugin({
       //   // Plugin options
       //   extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
@@ -730,6 +741,7 @@ module.exports = function (webpackEnv) {
       //     },
       //   },
       // }),
+      // new ProgressBarPlugin(),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell webpack to provide empty mocks for them so importing them works.
