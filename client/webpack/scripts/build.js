@@ -1,5 +1,6 @@
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
+process.env.PUBLIC_URL = 'http://test-s1.ljcdn.com/strategy/';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -23,7 +24,6 @@ require('../env');
 const path = require('path');
 const chalk = require('react-dev-utils/chalk');
 const fs = require('fs-extra');
-const bfj = require('bfj');
 const webpack = require('webpack');
 const configFactory = require('../webpack.config');
 const paths = require('../paths');
@@ -79,8 +79,8 @@ checkBrowsers(paths.appPath, isInteractive)
         console.log(warnings.join('\n\n'));
         console.log(
           '\nSearch for the ' +
-            chalk.underline(chalk.yellow('keywords')) +
-            ' to learn more about each warning.',
+          chalk.underline(chalk.yellow('keywords')) +
+          ' to learn more about each warning.',
         );
         console.log(
           'To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n',
@@ -102,7 +102,6 @@ checkBrowsers(paths.appPath, isInteractive)
       const appPackage = require(paths.appPackageJson);
       const publicUrl = paths.publicUrlOrPath;
       const publicPath = config.output.publicPath;
-      console.log(publicUrl, publicPath);
       const buildFolder = path.relative(process.cwd(), paths.appBuild);
       printHostingInstructions(
         appPackage,
@@ -180,7 +179,7 @@ function build(previousFileSizes) {
         console.log(
           chalk.yellow(
             '\nTreating warnings as errors because process.env.CI = true.\n' +
-              'Most CI servers set it automatically.\n',
+            'Most CI servers set it automatically.\n',
           ),
         );
         return reject(new Error(messages.warnings.join('\n\n')));
