@@ -53,31 +53,14 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'linebreak-style': 0,
-    // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
     'no-prototype-builtins': 'off',
     'import/prefer-default-export': 'off',
     'import/no-default-export': [0, 'camel-case'],
-    // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': 'off',
     // Use function hoisting to improve code readability
     'no-use-before-define': ['error', { functions: false, classes: true, variables: true }],
-    // Makes no sense to allow type inferrence for expression parameters, but require typing the response
-    // '@typescript-eslint/explicit-function-return-type': [
-    //   'off',
-    //   { allowTypedFunctionExpressions: true },
-    // ],
-    // '@typescript-eslint/no-use-before-define': [
-    //   'error',
-    //   { functions: false, classes: true, variables: true, typedefs: true },
-    // ],
-    // '@typescript-eslint/camelcase': 0,
-    // '@typescript-eslint/no-var-requires': 0,
-    // Common abbreviations are known and readable
     'unicorn/prevent-abbreviations': 'off',
-    // '@typescript-eslint/explicit-member-accessibility': 0,
-    // '@typescript-eslint/interface-name-prefix': 0,
-    // '@typescript-eslint/no-non-null-assertion': 0,
     'import/no-cycle': 0,
     'react-hooks/rules-of-hooks': 'error',
     // issue https://github.com/facebook/react/issues/15204
@@ -93,6 +76,7 @@ module.exports = {
     'space-before-function-paren': 0,
     'import/extensions': 0,
     'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }],
+    "no-unused-vars": "warn"
   },
   settings: {
     'import/resolver': {
@@ -101,3 +85,11 @@ module.exports = {
     polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
   },
 };
+
+
+// git commit的钩子函数
+// "husky": {
+//   "hooks": {
+//     "pre-commit": "npm run lint-staged"
+//   }
+// },

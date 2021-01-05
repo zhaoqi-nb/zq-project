@@ -1,19 +1,33 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { Input, Card, Button } from 'antd';
 import { fetchData } from '@/servers/my';
 
+// interface IProps {
+//   // history: IHistory,
+//   // match: Match,
+// }
+
+// interface IState {
+//   value: string
+// }
+
+
 class MyPage extends Component {
   state = {
     value: '',
+    // q: 1
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
 
   handleInputChange = (e) => {
     this.setState({
       value: e.target.value,
     });
   };
+
 
   handleFetchData = () => {
     fetchData(this.state.value)
@@ -30,8 +44,7 @@ class MyPage extends Component {
     return (
       <Card>
         <Input onChange={this.handleInputChange} />
-        111
-        <Button style={{ color: 'red' }} onClick={this.handleFetchData}>
+        <Button style={{ color: 'red' }} onClick={() => console.log(a)}>
           请求
         </Button>
         {value}

@@ -2,21 +2,12 @@
 // import { hot } from 'react-hot-loader/root';
 import React, { Component } from 'react';
 import { router } from 'dva'
-import routes from '@/configs/router.config.js';
+import routes from '@/configs/router.config';
 import { formatter, getLayouts } from '@/utils/router';
 
 const { Router, Switch } = router
 
-interface IProps {
-  history: any
-}
-
-interface IState {
-  routerData: any[],
-  authority: any[],
-}
-
-class AppRouter extends Component<IProps, IState> {
+class AppRouter extends Component {
   state = {
     routerData: [],
     authority: [1],
