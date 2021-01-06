@@ -2,11 +2,12 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    "typescript"
+    "typescript",
     // 下面这个对使用 ts 编写的 React 组件进行 ESLint 的文件检查暂时先去掉
-    // "typescriptreact"
+    "typescriptreact"
   ],
   "eslint.workingDirectories": ["./client", "./server"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true
 }

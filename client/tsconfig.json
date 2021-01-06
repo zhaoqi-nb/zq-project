@@ -28,6 +28,6 @@
       "@/*": ["./src/*"]
     }
   },
-  // "include": ["client/src"],
-  "exclude": ["node_modules", "build", "public", "webpack"]
+  "include": ["client/src", ".eslintrc.js"],
+  "exclude": ["node_modules", "build", "public", "webpack", "./tsconfig.json"]
 }

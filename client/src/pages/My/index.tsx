@@ -20,7 +20,7 @@ class MyPage extends Component<IProps, IState> {
   };
 
   componentDidMount() {
-    console.log(this.state.asd)
+    console.log(process.env)
   }
 
   handleInputChange = (e) => {

@@ -43,7 +43,7 @@ const appPackageJson = require(paths.appPackageJson);
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
 const webpackDevClientEntry = require.resolve('react-dev-utils/webpackHotDevClient');
-const reactRefreshOverlayEntry = require.resolve('react-dev-utils/refreshOverlayInterop');
+// const reactRefreshOverlayEntry = require.resolve('react-dev-utils/refreshOverlayInterop');
 
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
@@ -217,6 +217,7 @@ module.exports = function (webpackEnv) {
       // module chunks which are built will work in web workers as well.
       globalObject: 'this',
     },
+    //todo optimization进行第三方库代码分离
     optimization: {
       // 链接:https://blog.csdn.net/weixin_43678786/article/details/85788759
       minimize: isEnvProduction,
@@ -285,6 +286,7 @@ module.exports = function (webpackEnv) {
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
+      // todo 用于指定需要进行分块的代码，和分块后文件名
       splitChunks: {
         chunks: 'all',
         name: false,
@@ -292,6 +294,7 @@ module.exports = function (webpackEnv) {
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
+      // todo 用于生成维系各各代码块关系的代码
       runtimeChunk: {
         name: (entrypoint) => `runtime-${entrypoint.name}`,
       },
@@ -587,6 +590,7 @@ module.exports = function (webpackEnv) {
     plugins: [
       new CleanWebpackPlugin(),
       new WebpackBar(),
+      new webpack.DefinePlugin(env.stringified),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
@@ -614,6 +618,14 @@ module.exports = function (webpackEnv) {
             : undefined,
         ),
       ),
+      // todo styleLint配置
+      // new StyleLintPlugin({
+      //   configFile: '.stylelintrc.js',
+      //   context: 'src',
+      //   files: '**/*.less',
+      //   fix: true,
+      //   // emitErrors: true,
+      // }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       // https://github.com/facebook/create-react-app/issues/5358
@@ -634,7 +646,6 @@ module.exports = function (webpackEnv) {
       // It is absolutely essential that NODE_ENV is set to production
       // during a production build.
       // Otherwise React will be compiled in the very slow development mode.
-      new webpack.DefinePlugin(env.stringified),
       // This is necessary to emit hot updates (CSS and Fast Refresh):
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       // Experimental hot reloading for React .
