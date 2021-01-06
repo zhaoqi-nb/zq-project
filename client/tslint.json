@@ -1,0 +1,22 @@
+{
+  "extends": ["tslint:latest"],
+  "rules": {
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
+    "no-implicit-dependencies": false,
+    "no-this-assignment": false,
+    "prefer-conditional-expression": false,
+    "no-var-requires": false,
+    "ordered-imports": false,
+    "no-empty": false,
+    "no-unused-expression": false,
+    "interface-name": false,
+    "variable-name": false,
+    "member-access": false,
+    "quotemark": [true, "single"],
+    "ban-types": false,
+    "no-console": false,
+    "indent": [true, "spaces", 2]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

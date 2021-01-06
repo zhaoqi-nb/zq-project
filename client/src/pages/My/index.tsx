@@ -3,23 +3,24 @@ import React, { Component } from 'react';
 import { Input, Card, Button } from 'antd';
 import { fetchData } from '@/servers/my';
 
-// interface IProps {
-//   // history: IHistory,
-//   // match: Match,
-// }
+interface IProps {
+  history: IHistory,
+  match: Match,
+}
 
-// interface IState {
-//   value: string
-// }
+interface IState {
+  value: string
+}
 
 
-class MyPage extends Component {
+class MyPage extends Component<IProps, IState> {
   state = {
     value: '',
-    // q: 1
+    asd: 1
   };
 
   componentDidMount() {
+    console.log(this.state.asd)
   }
 
   handleInputChange = (e) => {
@@ -43,12 +44,13 @@ class MyPage extends Component {
     const { value } = this.state;
     return (
       <Card>
+        <div className='triangleMark' />
         <Input onChange={this.handleInputChange} />
-        <Button style={{ color: 'red' }} onClick={() => console.log(a)}>
+        <Button style={{ color: 'red' }}>
           请求
         </Button>
-        {value}
-      </Card>
+        { value}
+      </Card >
     );
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import My from '@/pages/My/index'
 
 class MyPage extends Component {
   componentDidMount() {
@@ -6,7 +7,7 @@ class MyPage extends Component {
   }
 
   render() {
-    return <div>one page124</div>;
+    return <div><My a={1} /></div>;
   }
 }
 

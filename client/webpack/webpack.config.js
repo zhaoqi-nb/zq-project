@@ -6,6 +6,8 @@ const resolve = require('resolve');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 // todo 优化打包进度
 const WebpackBar = require('webpackbar');
+// todo 显示打包文件大小可视化
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // todo 显示打包进度
 // const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 // const PnpWebpackPlugin = require('pnp-webpack-plugin');
@@ -54,6 +56,9 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // Get the path to the uncompiled service worker (if it exists).
 const swSrc = paths.swSrc;
+
+// 是否显示打包可视化
+const analyzeBundle = process.env.ANALYZE_BUNDLE === 'true';
 
 // style files regexes
 const cssRegex = /\.css$/;
@@ -399,42 +404,43 @@ module.exports = function (webpackEnv) {
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
-                customize: require.resolve('babel-preset-react-app/webpack-overrides'),
-                // @remove-on-eject-begin
-                babelrc: false,
-                configFile: false,
                 presets: [
+                  [
+                    // babel实现按需polyfill
+                    '@babel/preset-env',
+                    {
+                      useBuiltIns: 'usage',
+                      corejs: 3,
+                    },
+                  ],
                   [
                     require.resolve('babel-preset-react-app'),
                     {
                       runtime: hasJsxRuntime ? 'automatic' : 'classic',
                     },
                   ],
+                  [require('@babel/preset-typescript').default],
                 ],
-                // Make sure we have a unique cache identifier, erring on the
-                // side of caution.
-                // We remove this when the user ejects because the default
-                // is sane and uses Babel options. Instead of options, we use
-                // the react-scripts and babel-preset-react-app versions.
-                cacheIdentifier: getCacheIdentifier(
-                  isEnvProduction ? 'production' : isEnvDevelopment && 'development',
-                  [
-                    'babel-plugin-named-asset-import',
-                    'babel-preset-react-app',
-                    'react-dev-utils',
-                    'react-scripts',
-                  ],
-                ),
                 // @remove-on-eject-end
                 plugins: [
+                  // Turn on legacy decorators for TypeScript files
+                  [require('@babel/plugin-proposal-decorators').default, { legacy: true }],
                   [
-                    require.resolve('babel-plugin-named-asset-import'),
+                    require('@babel/plugin-proposal-class-properties').default,
                     {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent: '@svgr/webpack?-svgo,+titleProp,+ref![path]',
-                        },
-                      },
+                      loose: true,
+                    },
+                  ],
+                  [
+                    '@babel/plugin-transform-runtime',
+                    {
+                      corejs: 3,
+                      helpers: false,
+                      // version: require('@babel/runtime/package.json').version,
+                      regenerator: true,
+                      useESModules: true,
+                      // todo Babel 默认会从 node_modules  加载已经配置安装的 @babel/runtime 某个版本。absoluteRuntime 参数就是修改这个默认行为的，可以具体指定从哪里加载相应的 @babel/runtime。
+                      // absoluteRuntime: path.dirname(require.resolve('@babel/runtime/package.json')),
                     },
                   ],
                   // 按需加在antd的css
@@ -446,7 +452,7 @@ module.exports = function (webpackEnv) {
                       style: 'css', // `style: true` 会加载 less 文件
                     },
                   ],
-                ].filter(Boolean),
+                ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
                 // directory for faster rebuilds.
@@ -699,6 +705,7 @@ module.exports = function (webpackEnv) {
         resolveTypeReferenceDirectiveModule: process.versions.pnp
           ? `${__dirname}/pnpTs.js`
           : undefined,
+        // tslint: path.resolve(__dirname, '../tslint.json'),
         tsconfig: paths.appTsConfig,
         reportFiles: [
           // This one is specifically to match during CI tests,
@@ -735,7 +742,7 @@ module.exports = function (webpackEnv) {
       //     },
       //   },
       // }),
-      // new ProgressBarPlugin(),
+      analyzeBundle && isEnvProduction && new BundleAnalyzerPlugin(),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell webpack to provide empty mocks for them so importing them works.

@@ -22,6 +22,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
+    // 解决装饰器报错问题
+    "experimentalDecorators": true,
     "paths": {
       "@/*": ["./src/*"]
     }
