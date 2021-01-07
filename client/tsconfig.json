@@ -5,11 +5,11 @@
     "baseUrl": ".",
     "outDir": "build",
     "module": "esnext",
-    "target": "es6",
+    "target": "esnext",
     "jsx": "react",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "lib": ["es6", "dom"],
+    "lib": ["es6", "dom", "esnext"],
     "sourceMap": true,
     "allowJs": true,
     "rootDir": "./",
@@ -19,8 +19,10 @@
     "noImplicitAny": false,
     "importHelpers": true,
     "strictNullChecks": true,
+    "strict": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
+    "isolatedModules": false,
     "skipLibCheck": true,
     // 解决装饰器报错问题
     "experimentalDecorators": true,
@@ -28,6 +30,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["client/src", ".eslintrc.js"],
-  "exclude": ["node_modules", "build", "public", "webpack", "./tsconfig.json"]
+  "exclude": ["node_modules", "build", "webpack", "jest", "tslint:latest", "tslint-config-prettier"]
 }

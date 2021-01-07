@@ -7,18 +7,7 @@ import { formatter, getLayouts } from '@/utils/router';
 
 const { Router, Switch } = router;
 
-
-interface IProps {
-  history: IHistory,
-  match: Match,
-}
-
-interface IState {
-  routerData: any[],
-
-}
-
-class AppRouter extends Component<IProps, IState> {
+class AppRouter extends Component {
   state = {
     routerData: [],
     authority: [1],
@@ -26,7 +15,7 @@ class AppRouter extends Component<IProps, IState> {
 
   componentDidMount() {
     this.initData();
-    console.log(process.env)
+    console.log(process.env);
   }
 
   initData = () => {
@@ -40,8 +29,10 @@ class AppRouter extends Component<IProps, IState> {
     const { routerData, authority } = this.state;
     const { history } = this.props;
     return (
-      <Router history={history} >
-        <Switch>{getLayouts(routerData, authority)} </Switch>
+      <Router history={history}>
+        <Switch>
+          {getLayouts(routerData, authority)}
+        </Switch>
       </Router>
     );
   }

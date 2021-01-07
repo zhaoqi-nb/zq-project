@@ -73,6 +73,7 @@ module.exports = function (proxy, allowedHost) {
     sockHost,
     sockPath,
     sockPort,
+    // colors: 'red',
     // It is important to tell WebpackDevServer to use the same "publicPath" path as
     // we specified in the webpack config. When homepage is '.', default to serving
     // from the root.
@@ -131,6 +132,17 @@ module.exports = function (proxy, allowedHost) {
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+    },
+    stats: {
+      all: false,
+      errors: true,
+      warnings: true,
+      errorDetails: true,
+      // chunks: true,
+      assets: true,
+      hash: true,
+      builtAt: true,
+      colors: true,
     },
   };
 };

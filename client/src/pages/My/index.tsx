@@ -12,7 +12,6 @@ interface IState {
   value: string
 }
 
-
 class MyPage extends Component<IProps, IState> {
   state = {
     value: '',
@@ -20,7 +19,7 @@ class MyPage extends Component<IProps, IState> {
   };
 
   componentDidMount() {
-    console.log(process.env)
+    console.log(process.env, this.state.asd);
   }
 
   handleInputChange = (e) => {
@@ -28,7 +27,6 @@ class MyPage extends Component<IProps, IState> {
       value: e.target.value,
     });
   };
-
 
   handleFetchData = () => {
     fetchData(this.state.value)
@@ -44,13 +42,13 @@ class MyPage extends Component<IProps, IState> {
     const { value } = this.state;
     return (
       <Card>
-        <div className='triangleMark' />
+        <div className="triangleMark" />
         <Input onChange={this.handleInputChange} />
         <Button style={{ color: 'red' }}>
           请求
         </Button>
         { value}
-      </Card >
+      </Card>
     );
   }
 }

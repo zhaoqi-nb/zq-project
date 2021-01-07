@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import My from '@/pages/My/index'
+import My from '@/pages/My/index';
 
 class MyPage extends Component {
   componentDidMount() {
