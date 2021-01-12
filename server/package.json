@@ -5,20 +5,25 @@
   "main": "index.js",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "glob": "^7.1.6",
     "http": "0.0.1-security",
+    "koa": "^2.13.1",
+    "koa-views": "^7.0.0",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
-    "http-proxy-middleware": "^1.0.6",
     "babel-cli": "^6.23.0",
-    "babel-core": "^6.18.2"
+    "babel-core": "^6.26.3",
+    "http-proxy-middleware": "^1.0.6",
+    "nodemon": "^1.11.0"
   },
   "scripts": {
     "build": "babel src --presets=env --out-dir dist --copy-files",
-    "dev": "nodemon ./src/index.js",
+    "dev": "NODE_ENV=development DEV_SERVER_ENV=liantiao nodemon ./src/index.js",
     "test": "NODE_ENV=development DEV_SERVER_ENV=test nodemon ./src/index.js",
     "test2": "NODE_ENV=development DEV_SERVER_ENV=test2 nodemon ./src/index.js",
     "test3": "NODE_ENV=development DEV_SERVER_ENV=test3 nodemon ./src/index.js",

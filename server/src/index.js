@@ -1,47 +1,23 @@
-require('babel-polyfill');
-// http://music.163.com  网易云api
-
-const express = require('express')
-const { createProxyMiddleware } = require('http-proxy-middleware')
-const app = express()
-const serverApiUrl = {
-  production: 'http://api.ones.ke.com/',
-  testing: {
-    dev: 'http://music.163.com',
-    test: 'http://test-api.ones.ke.com/',
-    test2: 'http://test2-api.ones.ke.com/',
-    test3: 'http://test3-api.ones.ke.com/',
-    test4: 'http://test4-api.ones.ke.com/',
-    // test5: '',
-  },
-  mock: 'http://at.ke.com/mock/http-ke-ones/forfe/test1---rec-no'
+if (require('path').basename(__dirname) === 'src') {
+  require('babel-core/register')({ presets: ['env'] });
 }
-const DEV_SERVER_ENV = process.env.DEV_SERVER_ENV;
-const isDevServerEnvTesting = DEV_SERVER_ENV && DEV_SERVER_ENV.indexOf('test') === 0;
+// import app from './config/koa.config'
+const app = require('./koa.config')
+const { NODE_PORT } = require('./env')
+const env = process.env.NODE_ENV;
+const port = NODE_PORT[env] || 80
 
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-// app.engine('html', require('ejs').renderFile);
-// app.set('view engine', 'html');
-
-
-app.get('/', function (req, res) {
-  res.render('index.ejs', {
-    ENV: 1111, userInfo: {
-      name: '赵琪'
-    }
+app.use(async (ctx, next) => {
+  ctx.body = '张三';
+  // console.log(ctx.url, ctx.request, ctx)
+  console.log(222)
+  ctx.response.render('index', {
+    userInfo: {
+      name: '张三',
+      userCode: '123456'
+    },
   });
-});
-
-app.use('/api', createProxyMiddleware({
-  target: isDevServerEnvTesting ? serverApiUrl.testing[DEV_SERVER_ENV] : serverApiUrl.mock,
-  changeOrigin: true,
-  pathRewrite: {
-    "^/api": ""
-  },
-  // port
-}))
-
-app.listen(3081, () => {
-  console.log('服务器启动成功')
+  await next();/*继续向下匹配路由*/
 })
+
+app.listen(port)

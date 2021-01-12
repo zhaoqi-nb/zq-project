@@ -196,7 +196,7 @@ module.exports = function (webpackEnv) {
         ? 'js/[name].[contenthash:8].js'
         : isEnvDevelopment && 'js/bundle.js',
       // TODO: remove this when upgrading to webpack 5
-      futureEmitAssets: true,
+      // futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction
         ? 'js/[name].[contenthash:8].chunk.js'
@@ -216,6 +216,7 @@ module.exports = function (webpackEnv) {
       // this defaults to 'window', but by setting it to 'this' then
       // module chunks which are built will work in web workers as well.
       globalObject: 'this',
+      crossOriginLoading: 'anonymous',
     },
     //todo optimization进行第三方库代码分离
     optimization: {
@@ -290,6 +291,14 @@ module.exports = function (webpackEnv) {
       splitChunks: {
         chunks: 'all',
         name: false,
+        cacheGroups: {
+          vendors: {
+            chunks: 'initial',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 20,
+            name: 'vendors',
+          },
+        },
       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
@@ -592,32 +601,32 @@ module.exports = function (webpackEnv) {
       new WebpackBar(),
       new webpack.DefinePlugin(env.stringified),
       // Generates an `index.html` file with the <script> injected.
-      new HtmlWebpackPlugin(
-        Object.assign(
-          {},
-          {
-            favicon: path.resolve(__dirname, '../public/favicon.png'),
-            inject: true,
-            template: paths.appHtml,
-          },
-          isEnvProduction
-            ? {
-              minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-                removeEmptyAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true,
-              },
-            }
-            : undefined,
-        ),
-      ),
+      // new HtmlWebpackPlugin(
+      //   Object.assign(
+      //     {},
+      //     {
+      //       favicon: path.resolve(__dirname, '../public/favicon.png'),
+      //       inject: true,
+      //       template: paths.appHtml,
+      //     },
+      //     isEnvProduction
+      //       ? {
+      //         minify: {
+      //           removeComments: true,
+      //           collapseWhitespace: true,
+      //           removeRedundantAttributes: true,
+      //           useShortDoctype: true,
+      //           removeEmptyAttributes: true,
+      //           removeStyleLinkTypeAttributes: true,
+      //           keepClosingSlash: true,
+      //           minifyJS: true,
+      //           minifyCSS: true,
+      //           minifyURLs: true,
+      //         },
+      //       }
+      //       : undefined,
+      //   ),
+      // ),
       // todo styleLint配置
       // new StyleLintPlugin({
       //   configFile: '.stylelintrc.js',

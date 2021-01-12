@@ -1,5 +1,7 @@
-<div id="root">'<%- ENV %>'</div>
+<div id="root"></div>
 <script>
-  window['$ENV'] = '<%- ENV %>';
-  window['userInfo'] = <%- JSON.stringify(userInfo)%>;
+  window['$env'] = '<%- env %>';
 </script>
+<% for (var jsEntrypoint of js) { %>
+<script src="<%= publicUrl %>/<%= jsEntrypoint %>" crossorigin="anonymous"></script>
+<% } %>

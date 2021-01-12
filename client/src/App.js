@@ -15,7 +15,6 @@ class AppRouter extends Component {
 
   componentDidMount() {
     this.initData();
-    console.log(process.env);
   }
 
   initData = () => {
