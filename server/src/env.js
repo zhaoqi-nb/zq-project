@@ -1,6 +1,7 @@
 const clientPublicUrl = {
   production: 'http://s1.ljcdn.com/ke-ones', // 客户端生产环境cdn地址
   development: 'http://0.0.0.0:3080', // 客户端开发环境地址
+  testing: '' // 测试环境cdn资源
 };
 
 const nodePort = {
@@ -18,10 +19,6 @@ const serverApiUrl = {
   testing: {
     dev: 'http://music.163.com',
     test: 'http://test-api.ones.ke.com/',
-    test2: 'http://test2-api.ones.ke.com/',
-    test3: 'http://test3-api.ones.ke.com/',
-    test4: 'http://test4-api.ones.ke.com/',
-    // test5: '',
   },
   mock: 'http://at.ke.com/mock/http-ke-ones/forfe/test1---rec-no'
 }
