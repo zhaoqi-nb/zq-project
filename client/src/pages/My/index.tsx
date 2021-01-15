@@ -44,7 +44,7 @@ class MyPage extends Component<IProps, IState> {
       <Card>
         <div className="triangleMark" />
         <Input onChange={this.handleInputChange} />
-        <Button onClick={this.handleFetchData} style={{ color: 'red' }}>
+        <Button onClick={this.handleFetchData} style={{ color: 'black' }}>
           请求
         </Button>
         { value}

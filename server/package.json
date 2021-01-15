@@ -12,7 +12,9 @@
     "glob": "^7.1.6",
     "http": "0.0.1-security",
     "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
     "koa-views": "^7.0.0",
+    "request": "^2.88.2",
     "url": "^0.11.0"
   },
   "devDependencies": {
@@ -24,9 +26,6 @@
   "scripts": {
     "build": "babel src --presets=env --out-dir dist --copy-files",
     "dev": "NODE_ENV=development DEV_SERVER_ENV=liantiao nodemon ./src/index.js",
-    "test": "NODE_ENV=development DEV_SERVER_ENV=test nodemon ./src/index.js",
-    "test2": "NODE_ENV=development DEV_SERVER_ENV=test2 nodemon ./src/index.js",
-    "test3": "NODE_ENV=development DEV_SERVER_ENV=test3 nodemon ./src/index.js",
     "test4": "NODE_ENV=development DEV_SERVER_ENV=test4 nodemon ./src/index.js"
   },
   "keywords": [],

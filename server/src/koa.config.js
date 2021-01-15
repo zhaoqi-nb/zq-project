@@ -8,8 +8,11 @@ const views = require('koa-views')
 const glob = require('glob')
 const ejs = require('ejs')
 const app = new Koa()
+const bodyParser = require('koa-bodyparser')
 const c = { cyan: '\x1b[36m', red: '\x1b[31m', end: '\x1b[39m' }
 const log = message => process.stdout.write(message + '\n')
+// todo:用来接收请求的参数
+app.use(bodyParser());
 app.createServer = () => {
   let server = http.createServer(app.callback())
   return app.serverReducers.reduce((server, reduce) => reduce(server), server)
@@ -43,7 +46,6 @@ for (let viewDirPath of glob.sync(path.join(appPath, '/views', '/'))) {
 // 返回ejs模版
 const render = renderTemplate(appPath, matches, config)
 app.use((ctx, next) => {
-  console.log(1111)
   ctx.render = ctx.response.render = render.bind(ctx, false)
   ctx.renderToString = ctx.response.renderToString = render.bind(ctx, true)
   return next()

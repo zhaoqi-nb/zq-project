@@ -85,7 +85,6 @@ export function doPost(url, data, errorMsg, config = {}) {
       data,
       ...config,
       headers: {
-        'Content-Type': 'application/json',
         ...config.headers,
         'x-requested-with': 'XMLHttpRequest',
       },

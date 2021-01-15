@@ -10,7 +10,8 @@ const port = NODE_PORT[env] || 80
 app.use(async (ctx, next) => {
   ctx.body = '张三';
   // console.log(ctx.url, ctx.request, ctx)
-  console.log(222)
+  let data = ctx.request.query
+  console.log(data.a, 111)
   ctx.response.render('index', {
     userInfo: {
       name: '张三',
