@@ -23,7 +23,6 @@ app.use(createLoading());
 app.router((props) => <AppRouter {...props} />);
 
 const App = app.start();
-
 window._ = lodash;
 // eslint-disable-next-line no-underscore-dangle
 export default app._store;

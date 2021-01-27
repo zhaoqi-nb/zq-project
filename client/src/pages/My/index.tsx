@@ -19,7 +19,6 @@ class MyPage extends Component<IProps, IState> {
   };
 
   componentDidMount() {
-
   }
 
   handleInputChange = (e) => {
@@ -45,7 +44,7 @@ class MyPage extends Component<IProps, IState> {
         <div className="triangleMark" />
         <Input onChange={this.handleInputChange} />
         <Button onClick={this.handleFetchData} style={{ color: 'black' }}>
-          请求
+          请求3
         </Button>
         { value}
       </Card>

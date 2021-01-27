@@ -7,7 +7,7 @@ class MyPage extends Component {
   }
 
   render() {
-    return <div><My a={1} /></div>;
+    return <div style={{ display: 'flex', justifyContent: 'space-between' }}><My a={1} /></div>;
   }
 }
 

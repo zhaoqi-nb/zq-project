@@ -52,7 +52,7 @@ module.exports = function (proxy, allowedHost) {
     // for some reason broken when imported through webpack. If you just want to
     // use an image, put it in `src` and `import` it from JavaScript instead.
     contentBase: paths.appPublic,
-    contentBasePublicPath: paths.publicUrlOrPath,
+    contentBasePublicPath: '/',
     // By default files from `contentBase` will not trigger a page reload.
     watchContentBase: true,
     // Enable hot reloading server. It will provide WDS_SOCKET_PATH endpoint
@@ -105,10 +105,6 @@ module.exports = function (proxy, allowedHost) {
     },
     // proxy,
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
-    proxy: proxy || {
-      '/api': 'http://localhost:3081',
-      // changeOrigin: true,
-    },
     before(app, server) {
       // Keep `evalSourceMapMiddleware` and `errorOverlayMiddleware`
       // middlewares before `redirectServedPath` otherwise will not have any effect
