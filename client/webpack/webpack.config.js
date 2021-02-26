@@ -455,6 +455,7 @@ module.exports = function (webpackEnv) {
                       // absoluteRuntime: path.dirname(require.resolve('@babel/runtime/package.json')),
                     },
                   ],
+                  '@babel/plugin-syntax-dynamic-import',
                   // 按需加在antd的css
                   [
                     'import',
@@ -473,6 +474,11 @@ module.exports = function (webpackEnv) {
                 cacheCompression: false,
                 compact: isEnvProduction,
               },
+            },
+            {
+              test: /\.(js|mjs|jsx|ts|tsx)$/,
+              include: paths.appSrc,
+              loader: require('./loader/text'),
             },
             // Process any JS outside of the app with Babel.
             // Unlike the application JS, we only compile the standard ES features.

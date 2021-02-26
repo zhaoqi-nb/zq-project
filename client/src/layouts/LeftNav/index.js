@@ -146,8 +146,9 @@ export default class LeftNav extends Component {
           {this.renderMenuItems(navItems, currentAuthority)}
         </Menu>
       </Sider>
-    ) : (
-      <div />
-    );
+    ) :
+      (
+        <div />
+      );
   }
 }

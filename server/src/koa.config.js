@@ -7,14 +7,14 @@ const path = require('path');
 const views = require('koa-views')
 const glob = require('glob')
 const ejs = require('ejs')
-const createAPI = require('./createAPI')
+// const createAPI = require('./createAPI')
 const app = new Koa()
 const bodyParser = require('koa-bodyparser')
 const c = { cyan: '\x1b[36m', red: '\x1b[31m', end: '\x1b[39m' }
 const log = message => process.stdout.write(message + '\n')
-const md5 = crypto.createHash('md5')
+// const md5 = crypto.createHash('md5')
 const timestamp = String(Date.now())
-const sign = md5.update(`${timestamp}${credential[env]}`).digest('hex')
+// const sign = md5.update(`${timestamp}${credential[env]}`).digest('hex')
 // todo:用来接收请求的参数
 app.use(bodyParser());
 app.createServer = () => {
@@ -135,6 +135,6 @@ app.config.api = {
   cache: false, // 缓存
 }
 app.config.env = process.env.NODE_ENV;
-createAPI(app, { appPath, apiDir: '/apis' })
+// createAPI(app, { appPath, apiDir: '/apis' })
 
 module.exports = app
