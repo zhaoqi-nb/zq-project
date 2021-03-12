@@ -1,5 +1,6 @@
+require('babel-polyfill');
 if (require('path').basename(__dirname) === 'src') {
-  require('babel-core/register')({ presets: ['env'] });
+  require('babel-core/register')({ presets: ['es2015', 'stage-0'] });
 }
 const Request = require('./createRequest')
 const app = require('./koa.config')
@@ -8,9 +9,9 @@ const env = process.env.NODE_ENV;
 const port = NODE_PORT[env] || 80
 
 app.use(async (ctx, next) => {
-  if (ctx.request.url.indexOf('api') >= 0) {
-    Request(ctx)
-  }
+  // if (ctx.request.url.indexOf('api') >= 0) {
+  //   Request(ctx)
+  // }
   ctx.response.render('index', {
     userInfo: {
       name: '张三',

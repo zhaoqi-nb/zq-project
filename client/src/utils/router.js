@@ -9,17 +9,6 @@ const { Switch, Route, Redirect, matchPath } = router;
 
 export const DEFAULT_MATCH_OPTIONS = { exact: true, strict: false };
 
-// const Loading = () => (
-//   <Spin indicator={<Icon
-//     type="loading"
-//     style={{ fontSize: 24 }}
-//     spin
-//   />}
-//   >
-//     111
-//   </Spin>
-// );
-
 // const getComponent = (routeConfig, currentAuthority) => {
 //   const { redirect, component, routes, path, ...restRouteProps } = routeConfig;
 //   return Loadable({

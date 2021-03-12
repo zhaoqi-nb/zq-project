@@ -8,10 +8,17 @@
  * breadcrumb   自定义面包屑（暂不支持）
  * authority    路由的权限设置
  */
-import MyPage from '@/pages/My';
-import One from '@/pages/One/one';
-import Two from '@/pages/One/two';
-import Layouts from '@/layouts';
+// import MyPage from '@/pages/My';
+// import One from '@/pages/One/one';
+// import Two from '@/pages/One/two';
+// import Layouts from '@/layouts';
+import Loadable from '@/Loadable'
+
+const Layouts = Loadable(() => import('@/layouts'))
+const MyPage = Loadable(() => import('@/pages/My'))
+const One = Loadable(() => import('@/pages/One/one'))
+const Two = Loadable(() => import('@/pages/One/two'))
+const Canvas = Loadable(() => import('@/pages/Canvas'))
 
 export default [
   {
@@ -84,7 +91,7 @@ export default [
             path: '/profile/feedback',
             name: '用户反馈',
             icon: 'icon-fankui',
-            component: Two,
+            component: Canvas,
           },
           {
             path: '/profile/hidden',

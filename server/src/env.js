@@ -12,7 +12,7 @@ const nodePort = {
     test4: 9397,
     // test5: ,
   },
-  development: 3333,
+  development: 3334,
 };
 const DEV_SERVER_ENV = process.env.DEV_SERVER_ENV;
 const isDevServerEnvTesting = DEV_SERVER_ENV && DEV_SERVER_ENV.indexOf('test') === 0;
