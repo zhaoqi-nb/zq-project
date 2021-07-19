@@ -42,7 +42,7 @@ export default class LineReact extends React.Component {
     const { width = '100%', height = '400px' } = this.props;
     return (
       <div
-        ref={ID => {
+        ref={(ID) => {
           this.ID = ID;
         }}
         style={{ width, height }}

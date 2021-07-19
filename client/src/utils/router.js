@@ -5,7 +5,9 @@ import { router } from 'dva';
 import { Icon, Spin } from 'antd';
 // import { Route, Switch, Redirect, matchPath } from 'react-router-dom';
 
-const { Switch, Route, Redirect, matchPath } = router;
+const {
+  Switch, Route, Redirect, matchPath,
+} = router;
 
 export const DEFAULT_MATCH_OPTIONS = { exact: true, strict: false };
 
@@ -99,7 +101,9 @@ const getChildren = (routes, currentAuthority) => {
 export const getLayouts = (layoutRoutes, currentAuthority) => (
   <Switch>
     {layoutRoutes.map((item) => {
-      const { path, routes, component: Component, authority, ...restProps } = item;
+      const {
+        path, routes, component: Component, authority, ...restProps
+      } = item;
       return (
         <Route
           key={path}

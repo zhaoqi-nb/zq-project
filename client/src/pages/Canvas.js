@@ -12,17 +12,19 @@ class Canvans extends Component {
 
   componentDidMount() {
     const canvas = document.querySelector('canvas');
-    this.ctx = canvas.getContext('2d')
-    this.preview = new Image()
+    this.ctx = canvas.getContext('2d');
+    this.preview = new Image();
     canvas.addEventListener('mousedown', this.handleMousedown);
     canvas.addEventListener('mousemove', this.handleMousemove);
-    document.test.file.addEventListener('change', this.changeImg)
-    canvas.addEventListener('mouseup', this.handleMouseup)
+    document.test.file.addEventListener('change', this.changeImg);
+    canvas.addEventListener('mouseup', this.handleMouseup);
   }
 
   handleMouseup = (e) => {
     const canvas = document.querySelector('canvas');
-    const { sPoint, restore, ePoint, ctx, preview } = this
+    const {
+      sPoint, restore, ePoint, ctx, preview,
+    } = this;
     if (e.button === 0) {
       sPoint.drag = false;
       ePoint.x = e.offsetX;
@@ -47,12 +49,12 @@ class Canvans extends Component {
   }
 
   handleMousemove = (e) => {
-    const { sPoint, ctx } = this
+    const { sPoint, ctx } = this;
     const canvas = document.querySelector('canvas');
     if (e.button === 0 && sPoint.drag) {
       const nPoint = {
         x: e.offsetX,
-        y: e.offsetY
+        y: e.offsetY,
       };
       ctx.save(); // clip要通过restore回复
       ctx.clearRect(0, 0, canvas.width, canvas.height); // 画布全清
@@ -67,7 +69,7 @@ class Canvans extends Component {
   }
 
   handleMousedown = (e) => {
-    const { sPoint } = this
+    const { sPoint } = this;
     if (e.button === 0) {
       sPoint.x = e.offsetX;
       sPoint.y = e.offsetY;
@@ -76,7 +78,7 @@ class Canvans extends Component {
   }
 
   drawCover = () => {
-    const { ctx } = this
+    const { ctx } = this;
     const canvas = document.querySelector('canvas');
     ctx.save();
     ctx.fillStyle = 'rgba(0,0,0,0.3)';
@@ -87,7 +89,7 @@ class Canvans extends Component {
   changeImg = () => {
     const canvas = document.querySelector('canvas');
     const fr = new FileReader();
-    const { drawImage, preview } = this
+    const { drawImage, preview } = this;
     fr.onload = function () {
       preview.src = this.result;
       canvas.width = preview.width;
@@ -95,7 +97,7 @@ class Canvans extends Component {
       drawImage();
     };
     const files = document.querySelector('input[type=file]').files[0];
-    console.log(document.querySelector('input[type=file]').files)
+    console.log(document.querySelector('input[type=file]').files);
     if (files) fr.readAsDataURL(files);
   }
 
@@ -112,7 +114,8 @@ class Canvans extends Component {
         </form>
         <canvas width="0" height="0" />
 
-      </>);
+      </>
+    );
   }
 }
 

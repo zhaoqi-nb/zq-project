@@ -12,13 +12,15 @@
 // import One from '@/pages/One/one';
 // import Two from '@/pages/One/two';
 // import Layouts from '@/layouts';
-import Loadable from '@/Loadable'
+import Loadable from '@/Loadable';
 
-const Layouts = Loadable(() => import('@/layouts'))
-const MyPage = Loadable(() => import('@/pages/My'))
-const One = Loadable(() => import('@/pages/One/one'))
-const Two = Loadable(() => import('@/pages/One/two'))
-const Canvas = Loadable(() => import('@/pages/Canvas'))
+const Layouts = Loadable(() => import('@/layouts'));
+const MyPage = Loadable(() => import('@/pages/My'));
+const One = Loadable(() => import('@/pages/One/one'));
+const Two = Loadable(() => import('@/pages/One/two'));
+const TableGrid = Loadable(() => import('@/pages/TableGrid'));
+const TabulatorTable = Loadable(() => import('@/pages/TabulatorTable'));
+const Canvas = Loadable(() => import('@/pages/Canvas'));
 
 export default [
   {
@@ -61,6 +63,33 @@ export default [
                 authority: 9,
                 // hideInMenu: true,
                 component: MyPage,
+              },
+            ],
+            // component: One,
+          },
+          {
+            path: '/my/tree',
+            name: '二级菜单3',
+            routes: [
+              {
+                path: '/my/tree1',
+                name: '拖拽',
+                icon: 'icon-setting',
+                component: Two,
+              },
+              {
+                path: '/my/tree2',
+                name: '表格-react-data-grid',
+                icon: 'icon-setting',
+                component: TableGrid,
+              },
+              {
+                path: '/my/tree3',
+                name: '表格-tabulator-tables',
+                icon: 'icon-setting',
+                authority: 9,
+                // hideInMenu: true,
+                component: TabulatorTable,
               },
             ],
             // component: One,

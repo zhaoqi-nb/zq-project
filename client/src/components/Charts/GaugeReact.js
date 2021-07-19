@@ -27,10 +27,10 @@ class GaugeReact extends Component {
 
     // 设置options
     myChart.setOption(option);
-    myChart.on('mouseover', param => {
+    myChart.on('mouseover', (param) => {
       if (this.props.onMouseover) this.props.onMouseover(myChart, param);
     });
-    myChart.on('mouseout', param => {
+    myChart.on('mouseout', (param) => {
       if (this.props.onMouseout) this.props.onMouseout(myChart, param);
     });
     window.addEventListener('resize', () => {
@@ -43,7 +43,7 @@ class GaugeReact extends Component {
     return (
       <Spin spinning={loading}>
         <div
-          ref={ID => {
+          ref={(ID) => {
             this.ID = ID;
           }}
           style={{ width, height }}

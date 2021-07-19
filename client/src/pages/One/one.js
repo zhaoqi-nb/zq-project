@@ -19,14 +19,20 @@ function LogProvider({ children }) {
 function Logger1() {
   const addLog = useContext(LogDispatchContext);
   return (
-    <><p>一个能发日志的组件 1</p><button onClick={() => addLog('logger1')}>发日志</button></>
+    <>
+      <p>一个能发日志的组件 1</p>
+      <button onClick={() => addLog('logger1')}>发日志</button>
+    </>
   );
 }
 
 function Logger2() {
   const addLog = useContext(LogDispatchContext);
   return (
-    <><p>一个能发日志的组件 2</p><button onClick={() => addLog('logger2')}>发日志</button></>
+    <>
+      <p>一个能发日志的组件 2</p>
+      <button onClick={() => addLog('logger2')}>发日志</button>
+    </>
   );
 }
 
@@ -39,7 +45,8 @@ export default function App() {
   return (
     <LogProvider>
       {/* 写日志 */}
-      <Logger1 /><Logger2 />
+      <Logger1 />
+      <Logger2 />
       {/* 读日志 */}
       <LogsPanel />
     </LogProvider>

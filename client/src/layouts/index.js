@@ -8,7 +8,9 @@ import './index.less';
 const { Content } = Layout;
 
 export default function BasicLayout(props) {
-  const { location, routes, children, currentAuthority } = props;
+  const {
+    location, routes, children, currentAuthority,
+  } = props;
   const { pathname } = location;
   return (
     <Layout style={{ minHeight: '100vh', background: '#f0f2f5' }}>

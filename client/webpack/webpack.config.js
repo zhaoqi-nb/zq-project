@@ -354,21 +354,21 @@ module.exports = function (webpackEnv) {
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
         // 实现eslint检查全部文件
-        {
-          test: /\.(js|mjs|jsx|ts|tsx)$/,
-          enforce: 'pre',
-          exclude: /node_modules/,
-          use: {
-            loader: require.resolve('eslint-loader'),
-            options: {
-              cache: true,
-              cacheIdentifier: eslintCacheIdentifier,
-              formatter: require.resolve('react-dev-utils/eslintFormatter'),
-              eslintPath: require.resolve('eslint'),
-              resolvePluginsRelativeTo: __dirname,
-            },
-          },
-        },
+        // {
+        //   test: /\.(js|mjs|jsx|ts|tsx)$/,
+        //   enforce: 'pre',
+        //   exclude: /node_modules/,
+        //   use: {
+        //     loader: require.resolve('eslint-loader'),
+        //     options: {
+        //       cache: true,
+        //       cacheIdentifier: eslintCacheIdentifier,
+        //       formatter: require.resolve('react-dev-utils/eslintFormatter'),
+        //       eslintPath: require.resolve('eslint'),
+        //       resolvePluginsRelativeTo: __dirname,
+        //     },
+        //   },
+        // },
         // 热刷新
         {
           test: /\.(js|mjs|jsx|ts|tsx)$/,

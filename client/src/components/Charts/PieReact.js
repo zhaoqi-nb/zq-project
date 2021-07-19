@@ -27,7 +27,7 @@ class PieReact extends React.Component {
 
     // 设置options
     myChart.setOption(option);
-    myChart.on('click', param => {
+    myChart.on('click', (param) => {
       if (this.props.onClick) this.props.onClick(param);
     });
     window.addEventListener('resize', () => {
@@ -45,7 +45,7 @@ class PieReact extends React.Component {
     return (
       <Spin spinning={loading}>
         <div
-          ref={ID => {
+          ref={(ID) => {
             this.ID = ID;
           }}
           style={{ width, height }}

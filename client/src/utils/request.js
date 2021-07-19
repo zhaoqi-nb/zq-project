@@ -47,7 +47,7 @@ const handleError = _.debounce(
 
 // 封装统一转发请求
 function doRequest(config, errorMsg) {
-  console.log(config)
+  console.log(config);
   return axios(config)
     .then((response) => {
       const {

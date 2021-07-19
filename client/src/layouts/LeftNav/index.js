@@ -23,8 +23,8 @@ export default class LeftNav extends Component {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.pathname !== this.props.pathname ||
-      prevProps.currentAuthority !== this.props.currentAuthority
+      prevProps.pathname !== this.props.pathname
+      || prevProps.currentAuthority !== this.props.currentAuthority
     ) {
       this.updateNavs();
     }
@@ -97,17 +97,19 @@ export default class LeftNav extends Component {
     }
     return navItems
       .filter((v) => v.name)
-      .map(({ name, path, routes, hideChildrenInMenu, hideInMenu }) => {
+      .map(({
+        name, path, routes, hideChildrenInMenu, hideInMenu,
+      }) => {
         const subNavItems = routes;
         if (!hideChildrenInMenu && subNavItems && subNavItems.length > 0) {
           return (
             <SubMenu
               key={path}
-              title={
+              title={(
                 <>
                   <span>{name}</span>
                 </>
-              }
+              )}
               className="left-nav-submenu"
             >
               {this.renderMenuItems(subNavItems, currentAuthority)}
@@ -146,8 +148,8 @@ export default class LeftNav extends Component {
           {this.renderMenuItems(navItems, currentAuthority)}
         </Menu>
       </Sider>
-    ) :
-      (
+    )
+      : (
         <div />
       );
   }

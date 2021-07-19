@@ -37,7 +37,7 @@ export default class BarReact extends React.Component {
     return (
       <Spin spinning={loading}>
         <div
-          ref={ID => {
+          ref={(ID) => {
             this.ID = ID;
           }}
           style={{ width, height }}
